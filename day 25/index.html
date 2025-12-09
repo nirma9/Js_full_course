@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+               <h2> Dom practise</h2>
+
+               <div id = "container"></div>
+
+               <button id = "createbtn">Create Element</button>
+
+               <!-- remove  -->
+
+               <div class = "box">Delete me</div>
+
+
+               <button onclick="sayhi()">click me</button>
+               
+               <button id = "btn">Create Element</button>
+
+
+               <script>
+                              const container = document.getElementById("container");
+                              const createbtn = document.getElementById("createbtn");
+
+                              createbtn.addEventListener("click",function(){
+                                             const div = document.createElement("div");
+                                             div.textContent = "Hello i am a new div";
+                                             container.appendChild(div);
+                              });
+
+
+                              const box = document.querySelector('.box');
+                              box.remove();
+
+
+                              function sayhi(){
+                                             alert ("hello students..")
+                              }
+
+                              // const btn = document.getElementById("btn");
+                              btn.addEventListener("click",function(){
+                                             alert("clicked using add event listen")
+                              })
+               </script>
+               
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               <h2> Notes app</h2>
+
+               <input id = "noteinput" type = "text" placeholder="writenote">
+               <button id = "addnote">add</button>
+
+               <ul id = "noteslist"></ul>
+
+               <script>
+                              const input = document.getElementById("noteinput");
+                              const addbtn = document.getElementById("addnote");
+                              const list = document.getElementById("noteslist");
+
+                              addbtn.addEventListener("click",function(){
+                                             const text = input.value.trim();
+                                             if(text === ""){
+                                                            alert("Write something ");
+                                                            return;
+                                             }
+                                             const li = document.createElement("li");
+                                             li.textContent = text;
+
+                                             list.appendChild(li);
+                                             input.value = "";
+                              });
+               </script>
+               
+</body>
+</html>

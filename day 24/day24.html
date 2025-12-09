@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+               <h1 id = "title">Old title</h1>
+
+
+
+
+               <ul>
+                              <li>One</li>
+                              <li> Two</li>
+                              <li> three</li>
+               </ul>
+
+
+               <button id = "savebtn">Save</button>
+
+
+               <p class = "note">n1</p>
+               <p clss = "note">n2</p>
+
+<!-- //text content  -->
+               <div id = "d1"></div>
+
+
+
+               <!-- attributes -->
+
+               <img id = "logo" src = "img 7.jpg" alt = "old">
+
+
+               <h2 id = "hdr">Heading</h2>
+
+
+
+
+
+
+               <script>
+                              const t = document.getElementById("title");
+                              t.textContent = "New Title";
+
+                              
+
+
+                              const items = document.querySelectorAll("li");
+                              console.log(items.length);
+                              console.log(items[0].textContent);
+
+
+                              const btn = document.getElementById("savebtn");
+                              btn.textContent = "Saving...";
+
+
+                              const notes = document.querySelectorAll('.note');
+                              notes.forEach((n,idx)=> {
+                                             console.log(idx,n.textContent);
+                              })
+
+
+                              const d = document.getElementById('d1');
+
+                              d.textContent = "<b> Hi </b>";
+
+                              d.innerHTML = '<b> HI</b>';
+
+                              const logo = document.getElementById("logo");
+
+                              // read attribute
+                              console.log(logo.getAttribute('src'));
+
+                              //change attribute
+
+                              logo.setAttribute('src','img 4.webp');
+                              logo.setAttribute('alt',"new logo");
+
+                              const h = document.getElementById("hdr");
+
+                              //add a class
+                              h.classList.add('big');
+
+                              //remove
+
+                              h.classList.remove("small");
+
+                              //toggle a class
+
+                              h.classList.toggle("visible");
+
+                              //check if class exits
+
+                              console.log(h.classList.contains("big"));
+
+                              
+
+
+
+
+               </script>
+               
+</body>
+</html>
