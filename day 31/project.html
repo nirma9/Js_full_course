@@ -1,0 +1,96 @@
+
+<!-- //smart website performance msnager -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+
+               <style>
+                              body{
+                                             font-family: Arial, Helvetica, sans-serif;
+                                             text-align: center;
+                                             padding: 40px;
+                                             transition: 0.3s;
+                              }
+                              .dark {
+                                             background-color: #121212;
+                                             color: white;
+                              }
+                              .light {
+                                             background-color:white ;
+                                             color: black;
+                              }
+                              button{
+                                             padding: 10px 20px;
+                                             margin: 10px;
+                                             font-size: 16px;
+                                             cursor: pointer;
+                              }
+               </style>
+</head>
+<body>
+           <h1> Browser APIS</h1>
+           <button onclick="settheme('light')"> Light theme</button>
+           <button onclick = "settheme('dark')">dark theme</button>
+           
+           <h2 id = "visitcount"></h2>
+           <h2 id = "sessiontheme"></h2>
+
+
+           <script>
+
+               //theme perfernce
+function settheme(theme){
+               localStorage.setItem("theme",theme);
+               document.body.className = theme;
+
+
+}
+
+//load theme on page load
+
+const savedtheme = localStorage.getItem("theme");
+if(savedtheme){
+               document.body.className = savedtheme;
+}
+
+//vist counter 
+
+let visit = localStorage.getItem("visits");
+if(!visit){
+               visit = 1;
+
+}else{
+               visit = Number(visit)+1;
+}
+
+localStorage.setItem("visit",visit);
+
+document.getElementById("visitcount").innerText = "total visists" +visit;
+
+//session start
+sessionStorage.setItem("sessionstart",Date.now());
+
+//welcome mesg
+setTimeout(() => {
+               alert("welcome back to our website...");
+},2000);
+
+
+//live session 
+
+setInterval(() => {
+               const start = sessionStorage.getItem("sessionstart");
+               const seconds = Math.floor((Date.now() - start)/1000);
+               document.getElementById("sessiontime").innerText = "session time: " +seconds + "seconds";
+},1000);
+
+
+
+           </script>
+</body>
+</html>

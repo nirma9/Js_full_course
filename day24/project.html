@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               
+               <form id="signup" novalidate>
+  <div>
+    <label>Email
+      <input name="email" type="email" required>
+    </label>
+    <div class="error" data-for="email"></div>
+  </div>
+
+  <div>
+    <label>Password
+      <input name="password" type="password" minlength="8" required>
+    </label>
+    <div class="error" data-for="password"></div>
+  </div>
+
+  <div>
+    <label>Confirm Password
+      <input name="confirm" type="password" required>
+    </label>
+    <div class="error" data-for="confirm"></div>
+  </div>
+
+  <div>
+    <label>Phone
+      <input name="phone" type="tel" pattern="^\d{10}$" required>
+    </label>
+    <div class="error" data-for="phone"></div>
+  </div>
+
+  <button type="submit">Sign up</button>
+</form>
+
+<script>
+const form = document.getElementById('signup');
+
+function showError(field, message) {
+  const el = form.querySelector(`.error[data-for="${field}"]`);
+  if (el) el.textContent = message;
+}
+
+function clearErrors() {
+  form.querySelectorAll('.error').forEach(e => e.textContent = '');
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); 
+  clearErrors();
+
+  const fd = new FormData(form);
+  const email = fd.get('email')?.trim();
+  const password = fd.get('password');
+  const confirm = fd.get('confirm');
+  const phone = fd.get('phone')?.trim();
+
+  let valid = true;
+
+  if (!email) {
+    valid = false;
+    showError('email', 'Email is required.');
+  }
+
+  if (password.length < 8) {
+    valid = false;
+    showError('password', 'Password must be at least 8 characters.');
+  }
+
+  if (password !== confirm) {
+    valid = false;
+    showError('confirm', 'Passwords do not match.');
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    valid = false;
+    showError('phone', 'Phone must be 10 digits.');
+  }
+
+  if (!valid) return;
+
+  console.log("Form OK — ", { email, phone });
+});
+
+</script>
+
+
+
+
+
+</body>
+</html>

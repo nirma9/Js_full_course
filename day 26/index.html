@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               <button id = "btn1">Click me</button>
+
+               <!-- mouser over event  -->
+                <div id = "box" style="width: 100px;height: 100px; background: red;"></div>
+
+
+                <!-- //add event listener  -->
+                 <button id = "b1">press</button>
+
+
+
+                 <!-- //event obj  -->
+                  <ul id = "list">
+                              <li> Apple</li>
+                              <li> Mango</li>
+                  </ul>
+
+                  <a href = "https://google.com" id = "link">Open Google</a>
+
+
+                  <!-- //bubbling  -->
+                   <div id = "outer">
+                              <div id = "inner">
+                                             <button id = "btn">Click</button>
+                              </div>
+                   </div>
+
+               <script>
+                              document.getElementById("btn1").addEventListener("click",function(){
+                                             alert("BUtton clicked..")
+                              })
+
+                              document.getElementById("box").addEventListener("mouseover",function(){
+                                             console.log("MOuse moved over box...")
+                              })
+
+                              document.getElementById("b1").addEventListener("click",function(){
+                                             console.log("Button pressed...");
+                              });
+
+                              const btn  = document.getElementById("b1");
+
+
+                              btn.addEventListener("click",function(){
+                                             console.log("RUns once");
+                              },{once:true});
+
+
+                              document.getElementById("list").addEventListener("click",function(e){
+                                             console.log("target", e.target);
+                                             console.log("Current target ",e.currentTarget);
+                              })
+
+                              document.getElementById("link").addEventListener("click",function(e){
+                                             e.preventDefault();
+                                             console.log("deafult prevented..");
+                              }
+
+                              );
+
+
+                              //bubbling
+
+                              btn.addEventListener("click",()=> console.log("button"));
+                              inner.addEventListener("click",()=> console.log("inner"));
+                              outer.addEventListener("click",()=> console.log("outer"));
+
+
+                              //capturing
+
+                              outer.addEventListener("click",()=> console.log("Outer capturing"),true);
+
+
+
+               </script>
+               
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+
+               <style>
+                              body{
+                                             font-family: Arial, Helvetica, sans-serif;
+                                             background: #f2f2f2;
+
+                              }
+                              .todo{
+                                             max-width: 400px;
+                                             margin: auto;
+                                             background: white;
+                                             padding: 20px;
+                                             border-radius: 8px;
+                              }
+
+                              li{
+                                             margin: 5px 0;
+                                             padding: 8px;
+                                             border: 1px solid #ccc;
+                                             cursor: pointer;
+                              }
+
+                              .done{
+                                             text-decoration: line-through;
+                                             color: gray;
+                              }
+               </style>
+</head>
+<body>
+               <div class = "todo">
+                              <h2> To Do List</h2>
+                              <input id = "task" placeholder=" Enter task">
+                              <button id = "add">Add task</button>
+                              <ul id = "list"></ul>
+               </div>
+
+               <script>
+                              const task = document.getElementById("task");
+                              const add = document.getElementById("add");
+                              const list = document.getElementById("list");
+
+
+
+                              add.addEventListener("click" ,function(){
+                                             const li = document.createElement("li");
+                                             li.textContent = task.value;
+                                             list.append(li);
+                                             task.value = "";
+
+                              });
+
+                              list.addEventListener("click",function(e){
+                                             if(e.target.tagName === "Li"){
+                                                            e.target.classList.toggle("done");
+                                             }
+                              })
+               </script>
+
+               
+</body>
+</html>

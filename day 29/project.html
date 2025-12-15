@@ -1,0 +1,27 @@
+<!-- name mirror app  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+               <h2 id = "output">Your name appear here...</h2>
+               <input id = "inputbox" type = "text" placeholder="type your name">
+
+               <script>
+
+                              const box = document.getElementById("inputbox");
+                              const out = document.getElementById("output");
+
+                              box.addEventListener("input", () => {
+                                             out.textContent = box.value === "" ? "Your name appers here...": box.value;
+                              });
+
+               </script>
+               
+</body>
+</html>

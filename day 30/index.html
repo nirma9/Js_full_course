@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+
+               <!-- simple signup form  -->
+
+
+               <form id = "signup" novalidate>
+                              <div>
+                                             <label>email
+
+                                                            <input type = "email" name=" email" required>
+                                             </label>
+                                             <div class = "error" data-for = 'email' aria-live = "polite"></div>
+
+                              </div>
+
+
+                              <div>
+                                             <label>Password
+
+                                                            <input type = "password" name="password" required>
+                                             </label>
+                                             <div class = "error" data-for = 'password' aria-live = "polite"></div>
+
+                              </div>
+
+
+                              <div>
+                                             <label>Confirm password
+
+                                                            <input type = "password" name="confirm" required>
+                                             </label>
+                                             <div class = "error" data-for = 'confirm' aria-live = "polite"></div>
+
+                              </div>
+
+
+                              <div>
+                                             <label>Phone
+
+                                                            <input type = "tel" name="phone" pattern=" = '^\d{10}$" title = "10 digits" required>
+                                             </label>
+                                             <div class = "error" data-for = "phone" aria-live = "polite"></div>
+
+
+
+                                             <button id = "submitbtn" type = "submit">Signup</button>
+
+
+
+
+
+                              </div>
+               </form>
+
+               <script>
+
+                              const form = document.getElementById('signup');
+                              const submitbtn= document.getElementById('submitbtn');
+
+                              function showerror(fieldname,message){
+                                             const el = form.querySelector(`.error[data-for = "${fieldname}"]`);
+                                             const input = form.querySelector(`[name = "${fieldname}"]`);
+                                             if(el)el.textContent = message;
+                                             if(input) input.getAttribute('aria-invalid',!! message);
+                              }
+                              function clearErrors(){
+                                             form.querySelectorAll('.error').forEach(i => i.removeAttribute('aria-invalid'));
+                              }
+
+
+                              form.addEventListener('submit' ,async(e) => {
+                                             e.preventDefault();
+                                             clearErrors();
+
+
+                                             const fd = new FormData(form);
+                                             const email = fd.get('email')?.trim();
+                                             const password = fd.get('password') || '';
+                                             const confirm = fd.get('confirm') || '';
+                                             const phone = fd.get('phone')?.trim();
+
+                                             
+                                             let valid = true;
+
+                                             // if(!email){
+                                             //                valid = false;
+                                             //                showerror('email','email is required..');
+
+                                             // }
+                                             if(password.length < 8){
+                                                            valid  = false;
+                                                            showerror('password','password must be at least 8 characters');
+
+
+                                             }
+
+
+                                             //confirm password
+
+                                             if(password !== confirm ){
+                                                            valid= false;
+                                                            showerror("confirm" ,"passords must be match");
+                                             }
+
+
+                                             //phone pattern
+
+                                             if(!/^\d{10}$/.test(phone || "")){
+                                                            valid = false;
+                                                            showerror('phone','enter a 10 dogit phone number');
+
+
+                                             }
+
+
+                                             if(!valid){
+                                                            const firsterr = fomr.querySelector(".error: not(empty)");
+                                                            if(firsterr){
+                                                                           const name = firsterr.getAttribute('data-for');
+                                                                           form.querySelector(`[name = "${name} "]`).focus();
+                                                            }
+                                                            return; 
+                                             }
+
+
+                                             console.log('form ok --- values: ',{email,phone});
+                              });;
+               </script>
+               
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+               body {
+  font-family: Arial;
+}
+
+.dark {
+  background: black;
+  color: white;
+}
+
+.light {
+  background: white;
+  color: black;
+}
+
+  </style>
+</head>
+<body>
+
+<h1>User Dashboard</h1>
+
+<button onclick="setTheme('light')">Light</button>
+<button onclick="setTheme('dark')">Dark</button>
+
+<ul id="userList"></ul>
+
+<script src="script.js"></script>
+<script>
+               const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  document.body.className = savedTheme;
+}
+
+function setTheme(theme) {
+  localStorage.setItem("theme", theme);
+  document.body.className = theme;
+}
+
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById("userList");
+
+    data.forEach(user => {
+      const li = document.createElement("li");
+      li.textContent = user.name;
+      list.appendChild(li);
+    });
+  });
+
+</script>
+</body>
+</html>

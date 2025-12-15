@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+
+               <style>
+                .todo-app{
+                  width: 300px;
+                  margin: auto;
+                  background: #f5f5f5;
+                  padding: 20px;
+                  border-radius: 10px;
+                  font-family: Arial, Helvetica, sans-serif;
+                }
+
+                .todoinput{
+                  display: flex;
+                  gap: 10px;
+                }
+                .done{
+                  text-decoration: line-through;
+                  color: gray;
+
+                }
+
+                .delete-btn{
+                  margin-left: 10px;
+                  color: red;
+                  cursor: pointer;
+                }
+               </style>
+</head>
+<body>
+
+               <!-- //without event deligation 
+
+                <ul>
+                              <li> Red</li>
+                              <li> green</li>
+                              <li> Blue</li>
+               </ul>
+
+
+         //with  -->
+                  <!-- <ul id = "colorlist">
+                              <li> Red</li>
+                              <li> green</li>
+                              <li> Blue</li>
+               </ul>
+
+
+              //with propogation   -->
+
+               <!-- <div id = "box">
+                              parent
+                              <button id = "btn">Click</button>
+               </div>
+
+
+
+
+                //prevent default  
+
+              
+                <form id="myForm">
+  <input type="text">
+  <button type="submit">Submit</button>
+</form>
+
+
+
+<a href = "https://google.com" id = "link">GO</a>
+-->  
+
+               
+
+                <!-- <script>  -->
+//                               <!--
+//                               let listitems = document.querySelectorAll("li");
+
+//                               listitems.forEach(function(item){
+//                                              item.addEventListener("click",function(){
+//                                                             alert("Color clicked....");
+//                                              });
+//                               });
+//  -->
+
+                              <!-- // document.getElementById('colorlist').addEventListener('click',function(e){
+                              //                if(e.target.tagName === "LI"){
+                              //                               alert("Color clicked by delegations ....");
+                              //                }
+                              // });
+
+
+
+                              // const ul = document.getElementById('colorlist');
+
+                              // let newLi = document.createElement('li');
+                              // newLi.textContent = 'yellow';
+                              // ul.appendChild(newLi);
+
+
+
+                              // //propogation 
+
+                              // document.getElementById('box').addEventListener('click',function(){
+                              //                alert("Parent clicked...");
+                              // });
+
+                              // document.getElementById("btn").addEventListener('click',function(e){
+                              //                e.stopPropagation();
+                              //                alert("Button clicked....")
+                              // })
+
+
+                              // //without propogation 
+                              // document.getElementById("btn").addEventListener('click',function(){
+                              //                // e.stopPropagation();
+                              //                alert("Button clicked....")
+                              // });
+
+
+                              // document.getElementById('myform').addEventListener('submit',function(e){
+                              //                e.preventDefault();
+                              //                alert("submitted without reload");
+                              // });
+
+
+
+                              // document.getElementById("link").addEventListener('click',function(e){
+                              //                e.preventDefault();
+                              //                alert("Link clciked prevented");
+                              // })
+ -->
+
+
+
+ <!-- //to do list  -->
+
+
+
+
+ 
+
+
+ <div class = "todo-app">
+                              <h2> To Do List</h2>
+                              <div class = "todoinput">
+                              <input  type = "text" id = "taskinput" placeholder=" Enter task">
+                              <button id = "addtaskbtn">Add task</button>
+                              <ul id = "list"></ul>
+
+                              </div>
+
+                              <ul id = "tasklist"></ul>
+
+
+               </div>
+
+               <script>
+                              const input = document.getElementById("taskinput");
+                              const addbtn = document.getElementById('addtaskbtn');
+
+                              const list = document.getElementById("tasklist");
+
+                              //add new task
+
+                              addbtn.addEventListener("click",function(){
+                                             const tasktext = input.value.trim();
+
+                                             if(tasktext === ""){
+                                                            alert("Pls enter a task");
+                                                            return ;
+                                             }
+                                             
+                                             const li = document.createElement("li");
+
+                                             li.innerHTML = `
+                                             <span class = "task-text">${tasktext}</span>
+                                             <span class = "delete-btn">x </span>`;
+
+                                              list.appendChild(li);
+                                              input.value = "";
+                                             });
+
+
+
+                                              list.addEventListener('click',function(e){
+                                                if(e.target.classlist.contains("task-text")){
+                                                  e.target.classlist.toggle("done");
+                                                }
+
+                                                  if(e.target.classlist.contains("delete-btn")){
+                                                    e.target.parentElement.remove();
+                                                
+                                                }
+                                              });
+
+                              
+
+
+                                            
+
+                                             
+
+                              
+
+
+                              
+                              
+
+
+
+                            
+
+               
+
+
+               
+                                    
+
+
+               </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               </script>
+               
+</body>
+</html>

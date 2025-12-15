@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+               <input id = "taskinput" placeholder="Enter code">
+               <button id = "addbtn"> ADD task</button>
+               <ul id = "tasklist"></ul>
+
+
+               <script>
+                              const input = document.querySelector('#taskinput');
+                              const button = document.querySelector('#addbtn');
+                              const list = document.querySelector("#tasklist");
+
+                              function addtask(tasktext){
+                                             const li = document.createElement("li");
+                                             li.textContent = tasktext;
+                                             list.appendChild(li);
+                              }
+
+                              button.addEventListener("click",()=> {
+                                             try{
+                                                            if(!input.value){
+                                                                           throw new Error("Taks cannot be empty..");
+                                                            }
+                                                            addtask(input.value);
+                                                            input.value = "";
+
+                                             }catch(e){
+                                                            alert(e.message);
+                                             }
+                              });
+
+                              list.addEventListener('click',e => {
+                                             if(e.target.tagName === "LI"){
+                                                            e.target.classList.toggle("done");
+                                             }
+                              });
+               </script>
+               
+</body>
+</html>

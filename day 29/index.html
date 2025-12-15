@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               <h3> Enter your name: </h3>
+               <input id = "firstname" type = "text" placeholder=" Type your name ">
+               <button onclick=" showname()">Show name</button>
+
+
+               <!-- //controlled inputs -->
+                <h3> Live typing</h3>
+                <input id = "namebox" type = "text" placeholder="type somthing..">
+
+
+                <!-- //unctrolled  -->
+                 <h3> Enter age </h3>
+                 <!-- <input id = "age" type = "number"> -->
+                 <!-- <button onclick="checkage()">Check age</button> -->
+
+
+
+
+                 <!-- change event  -->
+
+                 <input id = "age" type = "number" placeholder="enter age">
+
+
+                 <!-- //blur enent  -->
+
+                 <input type = "email" id = "email" placeholder="enter email">
+                 <p id ="msg"></p>
+
+
+
+                 <!-- ket up event  -->
+                  <input type = "password" id = "pass" placeholder="Enter password">
+
+
+                  <!-- pattern  -->
+                   <input type = "text" pattern=" [0-9]{10}"  placeholder="enter 10 digit number" required>
+
+
+
+                 
+
+
+
+               <script>
+
+
+
+
+                              // function showname(){
+                              //                const box = document.getElementById('firstname');
+                              //                console.log(box.value);
+                              // }
+
+                              const box =  document.getElementById("namebox");
+                              box.addEventListener("input",function(){
+                                             console.log("USer typed: ",box.value);
+                              });
+
+
+                              function checkage(){
+                                             const ageinput = document.getElementById("age");
+                                             console.log("age is : ",ageinput.value);
+                              }
+
+                              const ageinput = document.getElementById("age");
+
+                              ageinput.addEventListener("change",() => {
+                                             console.log("Final value", ageinput.value);
+                              })
+
+                              const emial = document.getElementById("email")
+                              const msg = document.getElementById("msg");
+
+                              emial.addEventListener("blur",()=> {
+                                             msg.textContent = "You left theemail field....."
+                              });
+
+
+
+                              pass.addEventListener("keyup", () => {
+                                             console.log("Key releases passwprd is : ",pass.value)
+                              })
+
+
+
+
+
+               </script>
+               
+</body>
+</html>
