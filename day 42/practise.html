@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+<h2> day 42 - memory performance </h2> 
+
+<!-- <evnet listerne -->
+
+<button id = "add">add event istener</button>
+<button id = "remove"> Remove event listener</button>
+
+<button id = "clickme">click me</button>
+
+<p id = "count"> count:0</p>
+
+<!-- dom performance -->
+
+<button id = "baddom"> bad dom update</button>
+<button id = "gooddom"> good dom</button>
+
+<div id = "list"></div>
+
+<script>
+
+               //event listener exmaple
+
+               let count = 0;
+               const clickbtn = document.getElementById("clickme");
+               const counttext = document.getElementById("count");
+
+               function handleclick(){
+                              count++;
+                              counttext.textContent = "count" + count;
+                              console.log("Button clicked: ", count)
+                              
+                              ;
+               }
+               //add listener
+
+               document.getElementById("add").addEventListener("click",() =>{
+                              clickbtn.addEventListener("click",handleclick);
+                              console.log("event listener added..");
+               });
+
+               //remove listener
+
+               document.getElementById("remove").addEventListener("click",()=> {
+                              clickbtn.removeEventListener("click",handleclick);
+                              console.log("eventlistenr removed succesfuly..");
+               });
+
+               //bad dom
+
+               document.getElementById("baddom").addEventListener("click",()=> {
+                              const list = document.getElementById("list");
+                              list.innerHTML = "";
+                              console.time("baddom");
+                              for(let i = 0;i<1000;i++){
+                                             list.innerHTML += "<p> item" +i+ "</p>";
+                              }
+                              console.timeEnd("baddom");
+               });
+
+               //good dom
+
+               document.getElementById("gooddom").addEventListener("click", () => {
+                              const list = document.getElementById("list");
+                              list.innerHTML = "";
+                              console.log("good dom");
+                              let html = "";
+                              for (let i = 0; i<1000; i++){
+                                             html += "<p> item" +i+ "</p>";
+                              }
+                              list.innerHTML  = html;
+                              console.log("good dom");
+               });
+
+               //mempry clean up 
+
+               let tempdiv = document.createElement("div");
+               document.body.appendChild(tempdiv);
+
+               tempdiv.remove();
+               tempdiv = null;
+               console.log("unused DOM reference cleanend...");
+</script>
+               
+               
+</body>
+</html>

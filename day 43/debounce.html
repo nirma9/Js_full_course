@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               <h2> SEARCH products</h2>
+               <input id = "searchbox" placeholder="type to search.."/>
+               <p id = "output"></p>
+
+               <h2 > email validation</h2>
+
+               <input id= "email" placeholder="Enter email"/>
+               <p id = "msg"></p>
+
+
+               <script>
+                              const serachbox = document.getElementById("searchbox");
+                              const output = document.getElementById("output");
+
+                              function fetchfromserver(text){
+                                             output.innerText = "Fetching results for: " + text;
+                              }
+
+                              function debounce(fn,wait){
+               let timer;
+               return function(...args){
+                              clearTimeout(timer);
+                              timer = setTimeout(() => {
+                                             fn(...args);
+                              },wait);
+               }
+}
+                              const deboncessearch = debounce(fetchfromserver,500);
+
+
+                              serachbox.addEventListener("input",(e) => {
+                                             deboncessearch(e.target.value);
+                              })
+
+
+
+                              const email = document.getElementById("email");
+                              const msg = document.getElementById("msg");
+                              function validateemail(){
+                                             msg.innerText = "validating email..";
+                              }
+                              const debouncedvalidation = debounce(validateemail,800);
+
+
+                              email.addEventListener("keyup" ,() => {
+                                             debouncedvalidation();
+                              })
+               </script>
+
+
+
+               
+</body>
+</html>

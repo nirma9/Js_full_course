@@ -2,7 +2,7 @@
 <!-- //smart website performance msnager -->
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
                <meta charset="UTF-8">
@@ -92,5 +92,52 @@ setInterval(() => {
 
 
            </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2> login system project</h2>
+
+    <button onclick=" loginuser()">Login</button>
+    <p id = "result"></p>
+
+
+
+    <script>
+         function loginuser(){
+            const loginpromise = new Promise((resoleve,reject) => {
+                let isloggedin = true;
+                setTimeout(() => {
+                    if(isloggedin){
+                        resoleve("Login successfully...");
+                    }else{
+                        reject("invalid username")
+                    }
+                },2000);
+            });
+            loginpromise.then(message => {
+                document.getElementById("result").innerText = message;
+            })
+            .catch(error => {
+                document.getElementById("result").innerText = error ;
+            });
+         }
+    </script>
+    
 </body>
 </html>

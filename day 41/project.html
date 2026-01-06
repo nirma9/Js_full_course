@@ -1,0 +1,51 @@
+<!-- //vehivle management app  -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+ </head>
+ <body>
+
+               <h2> Vehicle information</h2>
+
+               <button onclick=" createcar()"> create car</button>
+
+               <p id = "output"></p>
+
+               <script>
+
+                              class Vehicle{
+                                             constructor(speed){
+                                                            this.speed = speed;
+                                             }
+                                             move(){
+                                                            return "vehicle moving at " + this.speed + " Km/h";
+                                             }
+                              }
+
+                              class car extends Vehicle{
+                                             constructor(speed,brand){
+                                                            super(speed);
+                                                            this.brand = brand;
+                                             }
+
+                                             move(){
+                                                            return this.brand + "car driving at " + this.speed + "km/h";
+                                             }
+                              }
+
+
+                              function createcar(){
+                                             const mycar = new car(120,"BMW");
+
+                                             document.getElementById("output").innerText = mycar.move();
+                              }
+
+
+
+               </script>
+               
+ </body>
+ </html>

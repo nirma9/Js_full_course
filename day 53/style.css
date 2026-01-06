@@ -1,0 +1,61 @@
+*{
+               margin :0;
+               padding: 0;
+               box-sizing: border-box;
+               font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+               background: #f4f6f8;
+               display: flex;
+               justify-content: center;
+               margin-top: 50px;
+}
+
+.app{
+               background: white;
+               padding: 20px;
+               width: 350px;
+               border-radius: 8px;
+               box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+h1{
+               text-align: center;
+               margin-bottom: 15px;
+}
+
+input{
+               flex: 1;
+               padding: 8px;
+}
+button{
+               padding: 8px 12px;
+               border: none;
+               background: #4caf50;
+               color: white;
+               cursor: pointer;
+}
+
+button:hover{
+               background: #45a049;
+}
+
+.note{
+               background: #eee;
+               margin-top: 10px;
+               padding: 10px;
+               border-radius: 5px;
+}
+
+.note button{
+               margin-top: 5px;
+               margin-right: 5px;
+               background: #2196f3;
+
+}
+
+.note button:last-child{
+               background: #f44336;
+}

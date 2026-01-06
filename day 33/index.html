@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+               <h2> Login system(real logic)</h2>
+
+               <input type = "text" id = "username" placeholder=" Enter username: ">
+               <br><br>
+               <input type = "password" id = "passwords" placeholder=" Enter password: ">
+               <br><br>
+
+               <button onclick="loginuser()"> Login </button>
+               <p id = "result" ></p>
+
+
+               <script>
+
+                              function loginuser(){
+                                             //get input values
+
+                                             const username = document.getElementById("username").value;
+                                             const password = document.getElementById("passwords").value;
+
+
+                                             //vreate promise
+
+
+                                             const loginpromise = new Promise((resolve,reject) => {
+                                                            setTimeout(() => {
+
+                                                                           if(username === "admin"  && password === "1234"){
+                                                                                          resolve("login sucessfull.....")
+
+                                                                           }else{
+                                                                                          reject("invalid username or password");
+                                                                           }
+                                                                           
+                                                            },2000);
+                                             });
+
+
+                                             // handle reult
+
+                                             loginpromise.then(message => {
+                                                            document.getElementById("result").innerText = message;
+                                             })
+                                             .catch(error => {
+                                                            document.getElementById("result").innerText = error;
+                                             });
+
+                                             
+                              }
+               </script>
+               
+</body>
+</html>

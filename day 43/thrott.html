@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+</head>
+<body>
+
+               <div style="height: 2000px; background: purple;"> scroll this page</div>
+
+               <button id = "paybtn"> pat now</button>
+
+               <p id = "status"></p>
+
+
+               <script>
+
+                              
+function throttle(fn,limit){
+               let inthrottle = false;
+
+               return function(){
+                              if(!inthrottle){
+                                             fn();
+                                             inthrottle = true;
+                                             setTimeout(() => {
+                                                            inthrottle = false;
+
+                                             },limit);
+
+                              }
+               }};
+                   
+                              window.addEventListener(
+                                             'scroll',throttle (() => {
+                                                            console.log("scrolling...");
+                                             },1000)
+                              );
+
+
+
+                              //another example
+
+
+                              const paybtn = document.getElementById("paybtn");
+                              const status = document.getElementById("status");
+
+                              paybtn.addEventListener("click",throttle(() => {
+                                             status.innerText = "payment processing..";
+                              },3000));
+                              
+
+
+
+
+
+
+
+
+
+
+               </script>
+               
+</body>
+</html>

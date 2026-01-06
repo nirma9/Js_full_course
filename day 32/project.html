@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+               <meta charset="UTF-8">
+               <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <title>Document</title>
+
+               <style>
+                              body{
+                                             font-family: Arial, Helvetica, sans-serif;
+
+                              }
+
+                              .dark{
+                                             background: black;
+                                             color: white;
+                              }
+                              .white{
+                                             background: white;
+                                             color: black;
+                              }
+               </style>
+</head>
+<body>
+        
+               <h2> User dashboard</h2>
+
+               <button onclick= "settheme('light')">Light</button>
+               <button onclick= "settheme('dark')">Dark</button>
+
+               <ul id = "userlist"></ul>
+
+
+               <script>
+                              const savedtheme = localStorage.getItem("theme");
+                              if(savedtheme){
+                                             document.body.className= savedtheme;
+                              }
+
+                              function settheme(theme){
+                                             localStorage.setItem("theme",theme);
+                                             document.body.className = theme;
+                              }
+
+
+
+                              fetch("https://jsonplaceholder.typicode.com/users")
+                              .then(response => response.json())
+                              .then (data => {
+                                             const list = document.getElementById("userlist");
+                                             data.forEach(user => {
+                                                            const li = document.createElement("li");
+                                                            li.textContent = user.name;
+                                                            list.appendChild(li);
+
+                                             });
+                                                            
+                                             });
+               
+               </script>
+</body>
+</html>
